@@ -76,8 +76,28 @@ window.addEventListener('resize', updateCursorVisibility);
 updateCursorVisibility();
 
 // Disable custom cursor for touch devices
-window.addEventListener('touchstart', () => {
-    cursorEnabled = false;
-    customCursor.style.display = 'none';
-    document.body.style.cursor = 'auto'; // Show the default cursor
-}, { once: true });
+document.addEventListener("DOMContentLoaded", function() {
+    let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+    if ("IntersectionObserver" in window) {
+        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let lazyImage = entry.target;
+                    lazyImage.src = lazyImage.dataset.src;
+                    lazyImage.classList.remove("lazy");
+                    lazyImageObserver.unobserve(lazyImage);
+                }
+            });
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+            lazyImageObserver.observe(lazyImage);
+        });
+    } else {
+        lazyImages.forEach(function(lazyImage) {
+            lazyImage.src = lazyImage.dataset.src;
+            lazyImage.classList.remove("lazy");
+        });
+    }
+});
