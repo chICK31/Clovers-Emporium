@@ -1,0 +1,223 @@
+:root {
+    --light-bg: #f0f0f0;
+    --light-text: #000;
+    --dark-bg: #333;
+    --dark-text: #fff;
+    --primary-color: #32a852; /* Green */
+    --footer-bg: #32a852; /* Green */
+    --footer-text: #fff;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: none; /* Hide the default cursor */
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+    color: var(--dark-text);
+    margin-right: 1rem;
+}
+
+#header-video {
+    width: 100px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--dark-text);
+    padding: 1rem;
+    text-decoration: none;
+    display: block;
+}
+
+nav ul li .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--primary-color);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+nav ul li .dropdown-content a {
+    padding: 0.5rem 1rem;
+}
+
+nav ul li:hover .dropdown-content {
+    display: block;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+#gallery {
+    padding: 2rem;
+    text-align: center;
+}
+
+.model {
+    margin: 1rem auto;
+    padding: 1rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px; /* Limit the width */
+}
+
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 1rem;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+.dark-mode nav ul li a {
+    color: var(--light-text);
+}
+
+.dark-mode nav ul li .dropdown-content {
+    background-color: var(--dark-bg);
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Custom Cursor Styles */
+#custom-cursor {
+    width: 48px;
+    height: 48px;
+    position: fixed; /* Change to fixed to stay in viewport */
+    pointer-events: none;
+    transform: translate(-50%, -50%); /* Center the cursor */
+    z-index: 10;
+}
+
+#clover {
+    width: 100%;
+    height: 100%;
+    background: url('clover.png') center center no-repeat;
+    background-size: contain;
+    transform-origin: center center;
+    transition: transform 0.1s;
+}
+
+#custom-cursor.trail {
+    opacity: 0;
+}
+
+.clover-trail {
+    position: fixed; /* Change to fixed to stay in viewport */
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle, rgba(50,168,82,1) 0%, rgba(50,168,82,0) 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fadeOut 0.5s forwards;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
+/* Hide custom cursor on mobile devices */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        padding: 0.5rem;
+    }
+
+    button {
+        margin-top: 1rem;
+    }
+
+    .title-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #header-video {
+        width: 100%;
+        height: auto;
+    }
+
+    #custom-cursor {
+        display: none;
+    }
+
+    body {
+        cursor: auto; /* Show the default cursor */
+    }
+}
